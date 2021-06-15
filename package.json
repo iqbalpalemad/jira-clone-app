@@ -1,0 +1,30 @@
+{
+  "name": "jira-clone-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iqbalpalemad/jira-clone-app.git"
+  },
+  "author": "iqbal palemad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iqbalpalemad/jira-clone-app/issues"
+  },
+  "homepage": "https://github.com/iqbalpalemad/jira-clone-app#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0",
+    "mongoose": "^5.12.13"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
