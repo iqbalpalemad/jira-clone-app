@@ -3,6 +3,7 @@ const dotenv        = require('dotenv');
 const mongoose      = require('mongoose');
 
 const authRoute     = require('./Routes/auth')
+const projectRoute  = require('./Routes/project')
 
 const app           = express();
 
@@ -11,6 +12,7 @@ dotenv.config();
 app.use(express.json());
 
 app.use('/auth',authRoute);
+app.use('/project',projectRoute);
 
 if(process.env.NODE_ENV !== "test"){
     mongoose.connect(process.env.DB_CONNECT,

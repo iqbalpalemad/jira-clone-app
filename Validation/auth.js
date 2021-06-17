@@ -14,6 +14,17 @@ exports.signupValidate = () => {
 }
 
 
+exports.loginValidate = () => {
+    return [
+        body('email', 'Invalid email').exists().isEmail(),
+        body('password').exists().isLength({ min: 5 })
+    ]
+}
+
+
+
+
+
 const checkEmailTaken = async (email) => {
     const user = await User.findOne({email : email});
     if(user)
