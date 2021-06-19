@@ -25,7 +25,7 @@ describe('Testing login API', () => {
         const l_response = await request.post('/auth/login').send(test_data);
         expect(l_response.status).toBe(400);
         expect(l_response.body.result).toBe(false);
-        expect(l_response.body.message).toContain("email address not found");
+        expect(l_response.body.message).toContain("Email address not found");
         test_data.email = "test@test.com";
         test_data.password = "invalidpassword";
         const i_l_response = await request.post('/auth/login').send(test_data);

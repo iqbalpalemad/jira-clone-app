@@ -16,7 +16,7 @@ const signup = async (req,res) => {
         });
 
         const save = await user.save();
-        res.status(201).json({result : true,message : "user created successfully", _id : save._id});
+        res.status(201).json({result : true,message : "User created successfully", _id : save._id});
     }
     catch(err){
         res.status(500).json({result : false, error : err.message});
