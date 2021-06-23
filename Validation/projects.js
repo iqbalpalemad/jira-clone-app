@@ -19,7 +19,8 @@ exports.AddUserValidate = () => {
 exports.ticketCreateValidate = () => {
     return [
         body('projectId').exists().isLength({ min: 24 , max:24}),
-        body('title').exists().isLength({ min: 5 })
+        body('title').exists().isLength({ min: 5 }),
+        body('description').optional().isLength({ min: 5 })
     ]
 }
 
@@ -31,7 +32,9 @@ exports.ticketUpdateValidate = () => {
 
 
 
+
 exports.commentCreateValidate = () => {
+    
     return [
         body('ticketId').exists().isLength({ min: 24 , max:24}),
         body('comment').exists().isLength({ min: 5 })
