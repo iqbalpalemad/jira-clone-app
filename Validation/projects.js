@@ -56,3 +56,10 @@ exports.createSprintValidate  = () => {
         body('title').exists().isLength({ min: 5 })
     ]
 }
+
+
+exports.addTickerToSprintValidate  = () => {
+    return [
+        body('ticketId').exists().isLength({ min: 24 , max:24})
+    ]
+}

@@ -1,26 +1,29 @@
-const express        = require('express');
-const router         = express.Router();
+const express            = require('express');
+const router             = express.Router();
 
-const getProject     = require('../Contollers/projects/getProject')
-const createProject  = require('../Contollers/projects/create');
-const addUser        = require('../Contollers/projects/addUser')
+const getProject         = require('../Contollers/projects/getProject')
+const createProject      = require('../Contollers/projects/create');
+const addUser            = require('../Contollers/projects/addUser')
 
-const getTicket      = require('../Contollers/projects/getTicket')
-const createTicket   = require('../Contollers/projects/ticket');
-const updateTicket   = require('../Contollers/projects/updateTicket');
-const assignTicket   = require('../Contollers/projects/reassignTicket');
+const getTicket          = require('../Contollers/projects/getTicket')
+const createTicket       = require('../Contollers/projects/ticket');
+const updateTicket       = require('../Contollers/projects/updateTicket');
+const assignTicket       = require('../Contollers/projects/reassignTicket');
 
-const getComment     = require('../Contollers/projects/getComment');
-const createComment  = require('../Contollers/projects/comment');
-const updateComment  = require('../Contollers/projects/updateComment');
+const getComment         = require('../Contollers/projects/getComment');
+const createComment      = require('../Contollers/projects/comment');
+const updateComment      = require('../Contollers/projects/updateComment');
 
-const createSprint   = require('../Contollers/projects/createSprint');
-const getSprint      = require('../Contollers/projects/getSprint');
-const activateSprint = require('../Contollers/projects/activateSprint');
-const deactivateSprint = require('../Contollers/projects/deactivateSprint');
+const createSprint       = require('../Contollers/projects/createSprint');
+const getSprint          = require('../Contollers/projects/getSprint');
+const activateSprint     = require('../Contollers/projects/activateSprint');
+const deactivateSprint   = require('../Contollers/projects/deactivateSprint');
+const addTicketToSprint  = require('../Contollers/projects/addTicketToSprint');
+const getTicketsInSprint = require('../Contollers/projects/getTicketsInSprint');
+const removerTickerFromSprint = require('../Contollers/projects/removeTicketFromSprint');
 
-const validate       = require('../Validation/projects');
-const userAuth       = require("../Middleware/userAuth");
+const validate           = require('../Validation/projects');
+const userAuth           = require("../Middleware/userAuth");
 
 router.get('/',userAuth,getProject);
 router.post('/project',userAuth,validate.CreateValidate(),createProject);
@@ -43,5 +46,9 @@ router.post('/sprint',userAuth,validate.createSprintValidate(),createSprint);
 router.get('/sprint/:projectId',userAuth,getSprint);
 router.post('/sprint/:sprintId/activate',userAuth,activateSprint)
 router.post('/sprint/:sprintId/deactivate',userAuth,deactivateSprint)
+router.post('/sprint/:sprintId/add',userAuth,validate.addTickerToSprintValidate(),addTicketToSprint)
+router.get('/sprint/:sprintId/tickets',userAuth,getTicketsInSprint);
+router.delete('/sprint/:sprintId/delete',userAuth,validate.addTickerToSprintValidate(),removerTickerFromSprint)
+
 
 module.exports = router;
