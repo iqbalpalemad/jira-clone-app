@@ -9,7 +9,6 @@ const removerTickerFromSprint = async (req,res) => {
     try{
 
         const sprint = await Sprint.findOne({_id : req.params.sprintId})
-        console.log(sprint)
         if(!sprint.tickets.includes(req.body.ticketId)){
             return res.status(400).json({result : true,message : "Ticket is not a part of the sprint"});
         }
