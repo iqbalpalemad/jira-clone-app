@@ -18,7 +18,7 @@ const getComment = async (req,res) => {
                                         .skip(skipIndex)
                                         .exec()
         }
-        res.status(201).json({result : true,comments : comments});
+        res.status(200).json({result : true,comments : comments});
     }
     catch(err){
         res.status(500).json({result : false, error : err.message});

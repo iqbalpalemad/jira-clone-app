@@ -16,7 +16,8 @@ const createTicket = async (req,res) => {
             currentUser : req.userId,
             updatedBy   : req.userId,
             projectId   : req.body.projectId,
-            title       : req.body.title
+            title       : req.body.title,
+            description : req.body.description
         });
 
         const save = await ticket.save();

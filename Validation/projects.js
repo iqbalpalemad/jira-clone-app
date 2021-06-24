@@ -47,3 +47,12 @@ exports.commentUpdateValidate = () => {
         body('comment').exists().isLength({ min: 5 })
     ]
 }
+
+
+
+exports.createSprintValidate  = () => {
+    return [
+        body('projectId').exists().isLength({ min: 24 , max:24}),
+        body('title').exists().isLength({ min: 5 })
+    ]
+}
