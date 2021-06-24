@@ -165,7 +165,7 @@ This is a clone app of jira backend
 	<br>1. sprintId
 
 
-17. /project/sprint/:sprintId/delete DELET ---- api to delete ticket from a sprint
+19. /project/sprint/:sprintId/delete DELET ---- api to delete ticket from a sprint
 
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
