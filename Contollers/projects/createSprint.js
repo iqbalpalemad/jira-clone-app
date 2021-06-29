@@ -18,8 +18,6 @@ const createSprint = async (req,res) => {
             updatedBy   : req.userId,
             projectId   : req.body.projectId,
             title       : req.body.title,
-            users       : [req.userId],
-            currentUser : req.userId,
             active      : activateSprint
         });
 

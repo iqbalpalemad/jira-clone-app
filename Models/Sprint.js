@@ -21,9 +21,6 @@ const sprintSchema = new mongoose.Schema(
     active : {
         type : Boolean,
         default : false
-    },
-    tickets : {
-        type    : [mongoose.Schema.Types.ObjectId]
     }
 },
 { timestamps: true }

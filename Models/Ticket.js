@@ -18,6 +18,9 @@ const ticketSchema = new mongoose.Schema(
         type : mongoose.Schema.Types.ObjectId,
         required : true,
     },
+    sprintId : {
+        type : mongoose.Schema.Types.ObjectId
+    },
     title : {
         type : String,
         required : true,

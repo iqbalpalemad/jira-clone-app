@@ -2,9 +2,15 @@ const Sprint                        = require('../../Models/Sprint');
 const deactivateSprint = async (req,res) => {
     try{
         const sprint = await Sprint.findOne({_id : req.params.sprintId})
+        
         if(!sprint){
             return res.status(400).json({result : false, message : "Sprint not found"});
         }
+
+        if(!sprint.active){
+            return res.status(400).json({result : false, message : "this sprint is aleady inactive",});
+        }
+
         sprint.active = false;
         const update  = await sprint.save();
 
