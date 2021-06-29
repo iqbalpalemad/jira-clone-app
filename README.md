@@ -66,7 +66,7 @@ This is a clone app of jira backend
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
 	<br> URL params : 
 	<br>1. ticketId
-   <br> body params : 
+   	<br> body params : 
          <br>1. title
 		 
 		 
@@ -76,7 +76,7 @@ This is a clone app of jira backend
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
 	<br> URL params : 
 	<br>1. ticketId
-   <br> body params : 
+   	<br> body params : 
          <br>1. userId
 		 
 		 
@@ -84,7 +84,7 @@ This is a clone app of jira backend
 
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
-   <br> body params : 
+   	<br> body params : 
 		 <br>1. ticketId
 		 <br>2. comment
 
@@ -92,7 +92,7 @@ This is a clone app of jira backend
 
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
-   <br> URL params : 
+   	<br> URL params : 
 	<br>1. ticketId
 	<br> body params (optional paging params ): 
 		 <br>1. page
@@ -115,7 +115,7 @@ This is a clone app of jira backend
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
 
-   <br> body params : 
+   	<br> body params : 
 		 <br>1. projectId
 		 <br>2. title
 
@@ -125,7 +125,7 @@ This is a clone app of jira backend
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
 
-   <br> URL params : 
+   	<br> URL params : 
 	<br>1. projectId
 		 
 
@@ -134,7 +134,7 @@ This is a clone app of jira backend
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
 
-   <br> URL params : 
+   	<br> URL params : 
 	<br>1. sprintId
 
 16. /project/sprint/:sprintId/deactivate POST ---- api to deactivate  a sprint
@@ -142,7 +142,7 @@ This is a clone app of jira backend
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
 
-   <br> URL params : 
+  	 <br> URL params : 
 	<br>1. sprintId
 
 
@@ -151,7 +151,7 @@ This is a clone app of jira backend
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
 
-   <br> URL params : 
+   	<br> URL params : 
 	<br>1. sprintId
 	<br> body params : 
 		 <br>1. ticketId
@@ -161,7 +161,7 @@ This is a clone app of jira backend
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
 
-   <br> URL params : 
+  	 <br> URL params : 
 	<br>1. sprintId
 
 
@@ -170,7 +170,7 @@ This is a clone app of jira backend
 	Headers : 
 			<br>1. authorization -- JWT token returned when logged in as Bearer 
 
-   <br> URL params : 
+   	<br> URL params : 
 	<br>1. sprintId
 	<br> body params : 
 		 <br>1. ticketId
