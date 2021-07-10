@@ -2,7 +2,7 @@ const Sprint                        = require('../../Models/Sprint');
 
 const getSprint = async (req,res) => {
     try{
-        const sprint = await Sprint.find({projectId : req.params.projectId})
+        const sprint = await Sprint.find({projectId : req.params.projectId}).cache()
         res.status(200).json({result : true,sprint : sprint});
     }
     catch(err){

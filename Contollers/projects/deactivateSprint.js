@@ -1,7 +1,10 @@
 const Sprint                        = require('../../Models/Sprint');
+const { clearRedisKey }             = require("../../utils/redis");
+
+
 const deactivateSprint = async (req,res) => {
     try{
-        const sprint = await Sprint.findOne({_id : req.params.sprintId})
+        const sprint = await Sprint.findOne({_id : req.params.sprintId}).cache()
         
         if(!sprint){
             return res.status(400).json({result : false, message : "Sprint not found"});
@@ -13,7 +16,7 @@ const deactivateSprint = async (req,res) => {
 
         sprint.active = false;
         const update  = await sprint.save();
-
+        clearRedisKey(Sprint.collection.collectionName);
         return res.status(201).json({result : true,message : "Sprint updated successfully", _id : sprint._id, active : sprint.active});
 
     }

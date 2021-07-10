@@ -1,5 +1,6 @@
 const Ticket                        = require('../../Models/Ticket');
 const { validationResult }          = require('express-validator');
+const { clearRedisKey }             = require("../../utils/redis");
 
 const removerTickerFromSprint = async (req,res) => {
     const errors = validationResult(req)
@@ -8,12 +9,13 @@ const removerTickerFromSprint = async (req,res) => {
     }
     try{
 
-        const ticket = await Ticket.findOne({_id : req.params.ticketId})
+        const ticket = await Ticket.findOne({_id : req.params.ticketId}).cache()
         if(!ticket.sprintId){
             return res.status(400).json({result : true,message : "Ticket is not a part of any sprint"});
         }
         ticket.sprintId = null;
         const update = await ticket.save();
+        clearRedisKey(Ticket.collection.collectionName);
         return res.status(201).json({result : true,message : "ticket remove from sprint successfully"});
     }
     catch(err){

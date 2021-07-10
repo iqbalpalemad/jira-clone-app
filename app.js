@@ -8,6 +8,8 @@ const ticketRoute   = require('./Routes/ticket')
 const sprintRoute   = require('./Routes/sprint')
 const app           = express();
 
+require('./utils/redis')
+
 dotenv.config();
 
 app.use(express.json());

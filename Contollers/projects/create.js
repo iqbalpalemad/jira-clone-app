@@ -1,5 +1,6 @@
 const Project                       = require('../../Models/Project');
 const { validationResult }          = require('express-validator');
+const { clearRedisKey }             = require("../../utils/redis");
 
 const createProject = async (req,res) => {
     const errors = validationResult(req)
@@ -15,6 +16,7 @@ const createProject = async (req,res) => {
         });
 
         const save = await project.save();
+        clearRedisKey(Project.collection.collectionName);
         res.status(201).json({result : true,message : "Project created successfully", _id : save._id});
     }
     catch(err){

@@ -1,6 +1,6 @@
 const Project                       = require('../../Models/Project');
 const { validationResult }          = require('express-validator');
-
+const { clearRedisKey }             = require("../../utils/redis");
 
 
 const addUser = async (req,res) => {
@@ -10,7 +10,7 @@ const addUser = async (req,res) => {
     }
 
     try{
-        const project = await Project.findOne({_id : req.params.projectId})
+        const project = await Project.findOne({_id : req.params.projectId}).cache()
         if(!project){
             return res.status(404).json({result : false,message : "Project not found"});
         }
@@ -22,6 +22,7 @@ const addUser = async (req,res) => {
         }
         project.users.push(req.body.userId);
         const save = await project.save();
+        clearRedisKey(Project.collection.collectionName);
         return res.status(201).json({result : true, message : "Project updated successfully"});
     }
     catch(err){

@@ -11,7 +11,7 @@ const login = async (req,res) => {
     }
 
     try{
-        const user = await User.findOne({email:req.body.email});
+        const user = await User.findOne({email:req.body.email}).cache();
         if(!user){
             return res.status(400).json({result : false, message : "Email address not found"});
         }

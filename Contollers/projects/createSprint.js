@@ -1,5 +1,6 @@
-const Sprint                       = require('../../Models/Sprint');
+const Sprint                        = require('../../Models/Sprint');
 const { validationResult }          = require('express-validator');
+const { clearRedisKey }             = require("../../utils/redis");
 
 const createSprint = async (req,res) => {
     const errors = validationResult(req)
@@ -8,7 +9,7 @@ const createSprint = async (req,res) => {
     }
     try{
         let activateSprint = false;
-        const activeSprint  = await Sprint.findOne({projectId : req.body.projectId, active : true});
+        const activeSprint  = await Sprint.findOne({projectId : req.body.projectId, active : true}).cache();
         if(!activeSprint){
             activateSprint = true;
         }
@@ -22,6 +23,7 @@ const createSprint = async (req,res) => {
         });
 
         const save = await sprint.save();
+        clearRedisKey(Sprint.collection.collectionName);
         res.status(201).json({result : true,message : "Sprint created successfully", _id : save._id, active : activateSprint});
     }
     catch(err){

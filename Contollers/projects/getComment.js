@@ -9,14 +9,14 @@ const getComment = async (req,res) => {
         if(page == NaN || limit == NaN){
             comments = await Comment.find({ticketId : req.params.ticketId})
                                     .sort({ _id: 1 })
-                                    .exec()
+                                    .exec().cache()
         }
         else{
             comments = await Comment.find({ticketId : req.params.ticketId})
                                         .sort({ _id: 1 })
                                         .limit(limit)
                                         .skip(skipIndex)
-                                        .exec()
+                                        .exec().cache()
         }
         res.status(200).json({result : true,comments : comments});
     }

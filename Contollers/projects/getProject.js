@@ -2,7 +2,7 @@ const Project                       = require('../../Models/Project');
 
 const getProject = async (req,res) => {
     try{
-        const projects = await Project.find()
+        const projects = await Project.find().cache()
         res.status(200).json({result : true,projects : projects});
     }
     catch(err){
