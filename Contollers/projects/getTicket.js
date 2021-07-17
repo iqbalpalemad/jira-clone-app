@@ -2,7 +2,7 @@ const Ticket                        = require('../../Models/Ticket');
 
 const getTicket = async (req,res) => {
     try{
-        const tickets = await Ticket.find({projectId : req.params.projectId}).cache()
+        const tickets = await Ticket.find({projectId : req.params.projectId}).cache("multiple")
         res.status(200).json({result : true,tickets : tickets});
     }
     catch(err){

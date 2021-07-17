@@ -3,7 +3,7 @@ const Ticket                        = require('../../Models/Ticket');
 
 const getTicketsInSprint = async (req,res) => {
     try{
-        const tickets = await Ticket.find({sprintId : req.params.sprintId}).cache()
+        const tickets = await Ticket.find({sprintId : req.params.sprintId}).cache("multiple")
         res.status(200).json({result : true,tickets : tickets});
     }
     catch(err){

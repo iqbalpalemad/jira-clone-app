@@ -1,6 +1,6 @@
-const Project                       = require('../../Models/Project');
-const { validationResult }          = require('express-validator');
-const { clearRedisKey }             = require("../../utils/redis");
+const Project                                       = require('../../Models/Project');
+const { validationResult }                          = require('express-validator');
+const { clearRedisHashSet,clearRedisHashKey }       = require("../../utils/redis");
 
 
 const addUser = async (req,res) => {
@@ -22,7 +22,8 @@ const addUser = async (req,res) => {
         }
         project.users.push(req.body.userId);
         const save = await project.save();
-        clearRedisKey(Project.collection.collectionName);
+        clearRedisHashSet(Project.collection.collectionName);
+        clearRedisHashKey(Project.collection.collectionName,save._id);
         return res.status(201).json({result : true, message : "Project updated successfully"});
     }
     catch(err){

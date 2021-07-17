@@ -1,7 +1,6 @@
-const bcrypt                = require('bcrypt');
-const User                  = require('../../Models/User')
-const { validationResult }  = require('express-validator')
-const { clearRedisKey }     = require("../../utils/redis");
+const bcrypt                    = require('bcrypt');
+const User                      = require('../../Models/User')
+const { validationResult }      = require('express-validator')
 
 
 const signup = async (req,res) => {
@@ -19,7 +18,6 @@ const signup = async (req,res) => {
         });
 
         const save = await user.save();
-        clearRedisKey(User.collection.collectionName);
         res.status(201).json({result : true,message : "User created successfully", _id : save._id});
     }
     catch(err){

@@ -1,6 +1,6 @@
 const Sprint                        = require('../../Models/Sprint');
 const { validationResult }          = require('express-validator');
-const { clearRedisKey }             = require("../../utils/redis");
+const { clearRedisHashSet }         = require("../../utils/redis");
 
 const createSprint = async (req,res) => {
     const errors = validationResult(req)
@@ -23,7 +23,7 @@ const createSprint = async (req,res) => {
         });
 
         const save = await sprint.save();
-        clearRedisKey(Sprint.collection.collectionName);
+        clearRedisHashSet(Sprint.collection.collectionName);
         res.status(201).json({result : true,message : "Sprint created successfully", _id : save._id, active : activateSprint});
     }
     catch(err){

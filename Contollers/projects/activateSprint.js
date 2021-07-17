@@ -1,5 +1,7 @@
-const Sprint                        = require('../../Models/Sprint');
-const { clearRedisKey }             = require("../../utils/redis");
+const Sprint                                        = require('../../Models/Sprint');
+const { clearRedisHashSet,clearRedisHashKey }       = require("../../utils/redis");
+
+
 const activateSprint = async (req,res) => {
     try{
         const sprint = await Sprint.findOne({_id : req.params.sprintId}).cache()
@@ -16,7 +18,8 @@ const activateSprint = async (req,res) => {
 
         sprint.active = true;
         const update  = await sprint.save();
-        clearRedisKey(Sprint.collection.collectionName);
+        clearRedisHashSet(Sprint.collection.collectionName);
+        clearRedisHashKey(Sprint.collection.collectionName,update._id);
         return res.status(201).json({result : true,message : "Sprint updated successfully", _id : sprint._id, active : sprint.active});
 
     }

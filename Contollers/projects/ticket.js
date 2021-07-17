@@ -1,7 +1,7 @@
 const Ticket                        = require('../../Models/Ticket');
 const { validationResult }          = require('express-validator');
 const Project                       = require('../../Models/Project');
-const { clearRedisKey }             = require("../../utils/redis");
+const { clearRedisHashSet }         = require("../../utils/redis");
 
 
 const createTicket = async (req,res) => {
@@ -24,7 +24,7 @@ const createTicket = async (req,res) => {
         });
 
         const save = await ticket.save();
-        clearRedisKey(Ticket.collection.collectionName);
+        clearRedisHashSet(Ticket.collection.collectionName);
         res.status(201).json({result : true,message : "Ticket created successfully", _id : save._id});
     }
     catch(err){

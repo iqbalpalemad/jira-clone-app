@@ -2,7 +2,10 @@ const Ticket                        = require('../../Models/Ticket');
 const Comment                       = require('../../Models/Comment');
 const { validationResult }          = require('express-validator');
 const Project                       = require('../../Models/Project');
-const { clearRedisKey }             = require("../../utils/redis");
+const { clearRedisHashSet }         = require("../../utils/redis");
+
+
+
 const createComment = async (req,res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -26,7 +29,7 @@ const createComment = async (req,res) => {
         });
 
         const save = await comment.save();
-        clearRedisKey(Comment.collection.collectionName);
+        clearRedisHashSet(Comment.collection.collectionName);
         res.status(201).json({result : true,message : "Comment created successfully", _id : save._id});
     }
     catch(err){

@@ -1,6 +1,6 @@
-const Ticket                        = require('../../Models/Ticket');
-const { validationResult }          = require('express-validator');
-const { clearRedisKey }             = require("../../utils/redis");
+const Ticket                                      = require('../../Models/Ticket');
+const { validationResult }                        = require('express-validator');
+const { clearRedisHashSet,clearRedisHashKey }     = require("../../utils/redis");
 
 const removerTickerFromSprint = async (req,res) => {
     const errors = validationResult(req)
@@ -15,7 +15,8 @@ const removerTickerFromSprint = async (req,res) => {
         }
         ticket.sprintId = null;
         const update = await ticket.save();
-        clearRedisKey(Ticket.collection.collectionName);
+        clearRedisHashSet(Ticket.collection.collectionName);
+        clearRedisHashKey(Ticket.collection.collectionName,update._id);
         return res.status(201).json({result : true,message : "ticket remove from sprint successfully"});
     }
     catch(err){
